@@ -29,14 +29,17 @@ public class EventController {
 	// 이벤트 상세정보
 	@GetMapping("/event/{eventId}")
 	public Event getEvent(@PathVariable String eventId) {
-		return null;
+		return eventService.getEvent(eventId);
 	}
 	
 	// 이벤트 참여 요청
 	@PostMapping("/event/{eventId}")
-	public ResponseEntity applyEvent(@PathVariable String eventId, @RequestBody EventCustomer eventCustomer) {
-		ResponseEntity responseEntity = eventService.applyEvent(eventCustomer);
-		return null;
+	public ResponseEntity<EventCustomer> applyEvent(@PathVariable String eventId, @RequestBody EventCustomer customer) {
+		
+		customer.setEventId(eventId);
+		ResponseEntity<EventCustomer> responseEntity = eventService.applyEvent(customer);
+		
+		return responseEntity;
 	}
 	
 }

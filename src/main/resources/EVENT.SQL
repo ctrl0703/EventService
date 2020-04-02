@@ -1,17 +1,26 @@
-CREATE TABLE EVENT (
-SEQ NUMBER NOT NULL
-,EVT_NM VARCHAR2(20) NOT NULL
-,ST_DT VARCHAR2(14) 
-,ED_DT VARCHAR2(14) 
-,COMMENTS VARCHAR2(100) 
-,REGID VARCHAR2(20) 
-,REGDATE DATE 
-,MODID VARCHAR2(20) 
-,MODDATE DATE  
-,SAMPLE_REF_SEQ NUMBER  
+create table event
+(
+eventId varchar(4000),
+eventNm varchar(4000),
+startDate Date,
+endDate Date,
+imageUrl varchar(4000),
+insertDate Date
 );
 
-INSERT INTO EVENT
-(SEQ, EVT_NM, ST_DT, ED_DT, COMMENTS, REGID, REGDATE, MODID, MODDATE, SAMPLE_REF_SEQ)
-VALUES
-(1, '202002_PROBIO_SAMPLE', '20200201', '20200229', '202002_그린티 프로바이오틱스 샘플링 이벤트', 'AC921937', SYSDATE, 'AC921937',SYSDATE,1);
+
+
+insert into event values
+('evt00001', '이벤트1', to_date('20200401', 'YYYYMMDD') ,  to_date('20200430', 'YYYYMMDD'), '', now());
+
+insert into event values
+('evt00002', '이벤트2', to_date('20200401', 'YYYYMMDD') ,  to_date('20200430', 'YYYYMMDD'), '', now());
+
+insert into event values
+('evt00003', '이벤트3', to_date('20200401', 'YYYYMMDD') ,  to_date('20200430', 'YYYYMMDD'), '', now());
+
+insert into event values
+('evt00004', '이벤트4', to_date('20200501', 'YYYYMMDD') ,  to_date('20200531', 'YYYYMMDD'), '', now());
+
+insert into event values
+('evt00005', '이벤트5', to_date('20200501', 'YYYYMMDD') ,  to_date('20200531', 'YYYYMMDD'), '', now());
