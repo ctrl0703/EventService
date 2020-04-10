@@ -1,0 +1,5 @@
+com\ibm\kr\controller\EventController.class
+com\ibm\kr\model\Event.class
+com\ibm\kr\service\EventService.class
+com\ibm\kr\EventServiceApplication.class
+com\ibm\kr\repository\EventRepository.class

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ibm.kr.event">
+
+<resultMap id="event" type="com.ibm.kr.model.Event">
+	<id property="eventId" column="EVENTID"/>
+	<result property="eventNm" column="EVENTNM"/>
+	<result property="startDt" column="STARTDT"/>
+	<result property="endDt" column="ENDDT"/>
+	<result property="imageUrl" column="IMAGEURL"/>
+	<result property="insertDt" column="INSERTDT"/>
+</resultMap>
+
+<resultMap id="eventCustomer" type="com.ibm.kr.model.EventCustomer">
+	<id property="eventId" column="EVENTID"/>
+	<result property="name" column="NAME"/>
+	<result property="mobileNumber" column="MOBILENUMBER"/>
+	<result property="applyDate" column="APPLYDATE"/>
+</resultMap>
+
+<select id="selectEventList" resultMap="event">
+	select evt.*
+	  from event evt
+	 where now() between evt.startdate and evt.enddate  
+</select>
+
+<select id="selectEvent" resultMap="event">
+	select evt.*
+	  from event evt
+	 where evt.eventId = #{eventId}
+</select>
+
+<select id="selectEventCustomer" resultType="java.lang.Integer">
+	select count(*) cnt
+	  from event_customer
+	 where eventId = #{eventId}
+	   and name = #{name}
+	   and mobileNumber = #{mobileNumber}
+</select>
+
+<insert id="insertEventCustomer" parameterType="com.ibm.kr.model.EventCustomer">
+	insert into event_customer
+		(eventId, name, mobileNumber, applyDate)
+	values 
+		(#{eventId}, #{name}, #{mobileNumber}, now())
+</insert>
+
+</mapper>
